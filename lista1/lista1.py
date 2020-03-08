@@ -63,13 +63,13 @@ def plotter():
   x1 = eval(input('To: '))
 
   points = [x0 - i/width * (x0 - x1) for i in range(width)]
-  vals = [-eval(f) for x in points]
+  vals = [eval(f) for x in points]
   yMax = max(vals)
   yMin = min(vals)
 
   for row in range(height):
     for i, column in enumerate(points):
-      if row == round(height - (yMax - vals[i])/(yMax - yMin) * height):
+      if row == round((yMax - vals[i])/(yMax - yMin) * height):
         print('*', end='')
       elif row == round(yMax / (yMax - yMin) * height):
         print('-', end='')
