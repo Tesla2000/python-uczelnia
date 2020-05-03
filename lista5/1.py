@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-ratings_data = pd.read_csv('ml-latest-small/ratings.csv')[['userId', 'movieId', 'rating']].to_numpy()
+ratings_data = pd.read_csv(
+    'ml-latest-small/ratings.csv')[['userId', 'movieId', 'rating']].to_numpy()
 toy_story_data = ratings_data[np.where(ratings_data[:, 1] == 1)]
 
 
@@ -19,12 +20,17 @@ def get_movie_ratings(users, movies):
         current_user_id = rating[0]
         ratings[i] = rating[2]
 
-        while ratings_index < len(ratings_data) and ratings_data[ratings_index][0] < current_user_id:
+        while ratings_index < len(ratings_data) and \
+                ratings_data[ratings_index][0] < current_user_id:
             ratings_index = ratings_index + 1
 
-        while ratings_index < len(ratings_data) and ratings_data[ratings_index][0] == current_user_id:
-            if ratings_data[ratings_index][1] - 2 >= 0 and ratings_data[ratings_index][1] - 2 < movies:
-                matrix[i][int(ratings_data[ratings_index][1] - 2)] = ratings_data[ratings_index][2]
+        while ratings_index < len(ratings_data) and \
+                ratings_data[ratings_index][0] == current_user_id:
+            if ratings_data[ratings_index][1] - 2 >= 0 and \
+                    ratings_data[ratings_index][1] - 2 < movies:
+                matrix[i][
+                    int(ratings_data[ratings_index][1] - 2)
+                ] = ratings_data[ratings_index][2]
             ratings_index = ratings_index + 1
 
     return matrix, ratings
@@ -49,6 +55,7 @@ def plot_predictions(movies):
     plt.show()
     plt.clf()
 
+
 def show_diffs(test_group, movies):
     full_group = 215
 
@@ -60,6 +67,7 @@ def show_diffs(test_group, movies):
 
     for i in range(test_group, full_group):
         print(f"{i}: {clf.predict([X[i]])}, actual: {Y[i]}")
+
 
 for m in [10, 1000, 10000]:
     plot_predictions(m)
