@@ -1,0 +1,1 @@
+Zadanie 1. najpierw wyświetla trzy wykresy jeden po drugim, a potem wypisuje do konsoli wyniki predykcji.
