@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 sig = (
     lambda x: 1./(1 + np.exp(-x)),
@@ -44,33 +45,16 @@ class NeuralNetwork:
             self.backprop()
 
 
-X = np.array(
-    [[0, 0, 1],
-     [0, 1, 1],
-     [1, 0, 1],
-     [1, 1, 1]
-     ])
+x = np.linspace(0, 2, 21)
+y = np.sin(x * (3*np.pi/2))
 
-fns = [
-    ('XOR', np.array([[0.], [1.], [1.], [0.]])),
-    ('AND', np.array([[0.], [0.], [0.], [1.]])),
-    ('OR', np.array([[1.], [1.], [1.], [1.]]))
-]
+x_reshaped = np.reshape(x, (21, 1))
+y_reshaped = np.reshape(y, (21, 1))
 
-np.set_printoptions(precision=3, floatmode='fixed')
-for act1_name, act1 in [('sig', sig), ('relu', relu)]:
-    print(f'{act1_name}')
-    for act2_name, act2 in [('sig', sig), ('relu', relu)]:
-        print(f'\t{act2_name}')
-        for fn_name, fn_result in fns:
-            network = NeuralNetwork(X, fn_result, act1, act2, eta=0.01)
-            network.train(5000)
-            print(f'\t\t{fn_name} -> \t{network.current_output.flatten()}')
-            print(f'\t\t\t{fn_result.flatten()}')
-
-
-# Wnioski dla nie-ustawionego seedu random:
-# eta = ~0.5 - dobre dla sig-sig
-# eta = ~0.3 - dobre dla relu-sig
-# eta = ~0.1 - dobre dla sig-relu
-# eta = ~0.01 - dobre dla relu-relu
+print(y)
+network = NeuralNetwork(x_reshaped, y_reshaped, sig, sig, 0.1, 5)
+network.train(30000)
+print(network.current_output)
+network.input = np.reshape(np.linspace(0, 2, 161), (161, 1))
+network.feedforward()
+# jeszcze nie działa
