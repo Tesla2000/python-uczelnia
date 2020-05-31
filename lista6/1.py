@@ -73,4 +73,4 @@ for act1_name, act1 in [('sig', sig), ('relu', relu)]:
 # eta = ~0.5 - dobre dla sig-sig
 # eta = ~0.3 - dobre dla relu-sig
 # eta = ~0.1 - dobre dla sig-relu
-# eta = ~0.01 - dobre dla relu-relu
+# eta = ~0.01 - dobre dla relu-relu, ale na xory trudno
