@@ -1,14 +1,16 @@
-from sklearn.linear_model import LinearRegression
+from typing import Union
+
 import matplotlib.pyplot as plt
-import pandas as pd
 import numpy as np
+import pandas as pd
+from sklearn.linear_model import LinearRegression
 
 ratings_data = pd.read_csv(
     'ml-latest-small/ratings.csv')[['userId', 'movieId', 'rating']].to_numpy()
 toy_story_data = ratings_data[np.where(ratings_data[:, 1] == 1)]
 
 
-def get_movie_ratings(users, movies):
+def get_movie_ratings(users: Union[float, int], movies):
     matrix = np.zeros((users, movies))
     ratings = np.zeros(users)
 

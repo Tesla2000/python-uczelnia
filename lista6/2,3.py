@@ -1,8 +1,10 @@
-# UWAGA! W TYM PLIKU ZANJDUJE SIĘ TAKŻE ZADANIE TRZECIE!
+from collections.abc import Mapping
+from collections.abc import Sequence
 
 import matplotlib.pyplot as plt
 import NeuralNetwork as nn
 import numpy as np
+# UWAGA! W TYM PLIKU ZANJDUJE SIĘ TAKŻE ZADANIE TRZECIE!
 
 sig = (
     lambda x: 1./(1 + np.exp(-x)),
@@ -20,14 +22,14 @@ tanh = (
 )
 
 
-def mse(expected, actual):
+def mse(expected, actual: Sequence):
     sum = 0
     for index, result in enumerate(expected):
         sum += (result - actual[index])**2
     return sum/len(expected)
 
 
-def visualize(test):
+def visualize(test: Mapping):
     network = nn.NeuralNetwork(test['layers'], test['eta'])
     domain = test['x']/max(test['x'])
     image = test['fn'](domain)

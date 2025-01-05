@@ -1,10 +1,13 @@
 from inspect import getfullargspec
+from typing import Union
+
+from protocols.protocols import CharSequence
 
 # doesn't work for typed args and default args
 class Overloader:
     known_functions = {}
 
-    def __init__(self, func):
+    def __init__(self, func: type):
         Overloader.known_functions[(func.__name__, len(getfullargspec(func).args))] = func
         self.func = func
 
@@ -15,7 +18,7 @@ def overload(func):
     return Overloader(func)
 
 @overload
-def test(x, y):
+def test(x: int, y: Union[CharSequence, complex, float, int, list, tuple]):
     return x * y
 
 @overload

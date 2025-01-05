@@ -1,4 +1,5 @@
-def quickSort(array):
+from collections.abc import Sequence
+def quickSort(array: Sequence):
     if len(array) == 0:
         return []
     return quickSort([x for x in array[1:] if x < array[0]]) + [array[0]] + quickSort(list(filter(lambda x: x >= array[0], array[1:])))

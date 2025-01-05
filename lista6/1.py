@@ -1,3 +1,5 @@
+from typing import SupportsIndex
+
 import numpy as np
 
 sig = (
@@ -38,7 +40,7 @@ class NeuralNetwork:
         self.weights1 += d_weights1
         self.weights2 += d_weights2
 
-    def train(self, iterations):
+    def train(self, iterations: SupportsIndex):
         for _ in range(iterations):
             self.feedforward()
             self.backprop()

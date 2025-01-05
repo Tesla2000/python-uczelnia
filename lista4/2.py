@@ -1,6 +1,8 @@
+from collections.abc import Sequence
 from random import random
+from typing import Union
 
-def radnom_tree(height):
+def radnom_tree(height: Union[float, int]):
     node_number = 1
 
     def random_subtree(max_height): # recursively generates random subtree
@@ -39,7 +41,7 @@ def dfs(tree):
         yield from dfs(tree[1])
         yield from dfs(tree[2])
 
-def bfs(tree):
+def bfs(tree: Sequence):
     q = [tree]
     while len(q) > 0:
         current = q.pop(0)

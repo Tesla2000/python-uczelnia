@@ -1,9 +1,11 @@
-from collections import defaultdict
 import argparse
 import hashlib
 import os
+from collections import defaultdict
+from os import PathLike
+from typing import Union
 
-def file_hash(filename):
+def file_hash(filename: Union[PathLike[bytes], PathLike[str], bytes, int, str]):
     h = hashlib.sha256()
     b = bytearray(128 * 1024)
     m = memoryview(b)

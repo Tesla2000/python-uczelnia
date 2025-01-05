@@ -1,4 +1,5 @@
 from random import random
+from typing import Union
 
 
 class Node:
@@ -10,10 +11,10 @@ class Node:
         return str(self.data) + ':  [' + ', '.join(map(str, self.children)) + ']'
 
     @staticmethod
-    def random_tree(height, child_probability):
+    def random_tree(height: Union[float, int], child_probability: Union[float, int]):
         node_number = 1
 
-        def random_subtree(height):
+        def random_subtree(height: Union[float, int]):
             nonlocal node_number
             nonlocal child_probability
 

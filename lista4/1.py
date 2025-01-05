@@ -9,7 +9,7 @@ def measure_time(f):
     return wrap
 
 @measure_time
-def sleep_for(seconds):
+def sleep_for(seconds: float):
     time.sleep(seconds)
 
 sleep_for(1)

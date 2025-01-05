@@ -1,4 +1,5 @@
-def transposeFunnyMatrix(matrixArray):
+from collections.abc import Collection
+def transposeFunnyMatrix(matrixArray: Collection[str]):
     return [" ".join(row.split(" ")[column] for row in matrixArray) for column in range(len(matrixArray))]
 
 

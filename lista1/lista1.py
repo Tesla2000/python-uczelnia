@@ -1,13 +1,17 @@
+from collections.abc import Iterable
+from collections.abc import Sequence
+from typing import SupportsIndex
+from typing import Union
 # source codes without imports
 
-def primes(n):
+def primes(n: SupportsIndex):
   primes = []
   for number in range(2, n):
     if all(number % prime != 0 for prime in primes):
       primes.append(number)
   return primes
 
-def prime_factors(n):
+def prime_factors(n: Union[float, int]):
   result = []
   for divider in range(2, math.ceil(math.sqrt(n))):
     power = 0
@@ -19,14 +23,14 @@ def prime_factors(n):
 
   return result
 
-def fraczero(n):
+def fraczero(n: Union[float, int]):
   zeros = 0
   while n > 0:
     n //= 5
     zeros += n
   return zeros
 
-def rand_stuff(nums, start, end):
+def rand_stuff(nums: SupportsIndex, start, end):
   numbers = [int(random.uniform(start, end)) for i in range(nums)]
   print(numbers)
   print(reduce(lambda prev, curr: prev + curr/len(numbers), numbers, 0))
@@ -34,11 +38,11 @@ def rand_stuff(nums, start, end):
   print(sorted(numbers)[1], sorted(numbers)[-2])
   print(len([n for n in numbers if n % 2 == 0]))
 
-def matcher(strings, pattern):
+def matcher(strings: Iterable[Sequence], pattern: Iterable):
   dictionary = {i: c for i, c in enumerate(pattern) if c != "*"}
   return [s for s in strings if all(s[i] == c for i, c in dictionary.items())]
 
-def rzymToArabNotException(rzymString): #pdk xD
+def rzymToArabNotException(rzymString: Iterable): #pdk xD
   values = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
   arab = 0
   last = 0

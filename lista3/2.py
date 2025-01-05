@@ -1,4 +1,5 @@
-def flatten(funnyList):
+from collections.abc import Iterable
+def flatten(funnyList: Iterable):
     for item in funnyList:
         if isinstance(item, list):
             for element in flatten(item):

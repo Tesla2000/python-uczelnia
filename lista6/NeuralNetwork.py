@@ -1,15 +1,19 @@
+from collections.abc import Mapping
+from collections.abc import Sequence
+from typing import SupportsIndex
+
 import numpy as np
 
 
 class NetworkLayer:
-    def __init__(self, activation_fn, shape):
+    def __init__(self, activation_fn, shape: Sequence):
         self.fn, self.fn_prim = activation_fn
         self.weights = np.random.standard_normal(shape)
         self.values = np.zeros((shape[1]))
 
 
 class NeuralNetwork:
-    def __init__(self, layers, eta, output_shape=(1, 1)):
+    def __init__(self, layers: Sequence[Mapping], eta, output_shape: Sequence=(1, 1)):
         self.output_layer = np.zeros(output_shape)
         self.layers = []
         self.eta = eta
@@ -51,7 +55,7 @@ class NeuralNetwork:
         for layer, weight in zip(self.layers, reversed(deltas)):
             layer.weights += weight
 
-    def train(self, input, expected_output, iterations):
+    def train(self, input, expected_output, iterations: SupportsIndex):
         for _ in range(iterations):
             self.feedforward(input)
             self.backprop(expected_output)
